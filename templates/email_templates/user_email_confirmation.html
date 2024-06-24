@@ -1,0 +1,58 @@
+{% autoescape off %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            margin: 20px;
+            padding: 20px;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            background-color: #fff;
+            padding: 40px;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #FF4B4B;
+        }
+        p {
+            margin-bottom: 20px;
+        }
+        strong {
+            font-weight: bold;
+        }
+        .footer {
+            margin-top: 30px;
+            font-size: 14px;
+            color: #777;
+            text-align: center;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Hello {{ name }}! 🌟</h1>
+        <p>It's Kalvin from Predictly, and we're absolutely thrilled to have you join us! 🎉</p>
+        <p>Welcome aboard to our platform! Before diving into the full Predictly experience, we want to ensure that your email address is verified. Simply follow the link provided below to complete the verification process:</p>
+        <p><strong>Confirmation Link:</strong> <a href="http://{{ domain }}{% url 'activate' uidb64=uid token=token %}">Verify Your Email</a></p>
+        <p>Verifying your email grants you complete access to our suite of services, empowering you to make the most out of everything Predictly has to offer. 💪</p>
+        <p>Got any questions or need assistance with the verification process? Don't hesitate to contact our dedicated support team at <a href="mailto:predictlyfeedback@gmail.com">predictlyfeedback@gmail.com</a>. We're here to guide you through every step! 🤝</p>
+        <p>Thanks a bunch for choosing Predictly! We're eagerly looking forward to having you as an active and valued member of our vibrant community. 🌟</p>
+        <p>Warm regards,</p>
+        <p>Kalvin,<br>The Predictly Team 📈</p>
+    </div>
+    <div class="footer">
+        <p>© 2024 Predictly. All rights reserved.</p>
+    </div>
+</body>
+</html>
+{% endautoescape %}

@@ -1,0 +1,31 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{% block title %}Predictly - Stock Analysis{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'css/sidebar.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/boards.css' %}" />
+    <link rel="stylesheet" href="{% static 'css/feedback_modal.css' %}" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.2.1/css/all.min.css"
+    />
+  </head>
+  <body>
+    <div class="menu-toggle">
+      <i class="fas fa-bars"></i>
+    </div>
+    {% include 'reusable/side_navigation_bar.html' %}
+    <main class="main">
+      <div class="main-content-container">
+        {% block content %} {% endblock %}
+      </div>
+    </main>
+    {% include 'reusable/feedback_modal.html' %}
+    <script src="{% static 'js/boards.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+  </body>
+</html>

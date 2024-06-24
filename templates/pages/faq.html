@@ -1,0 +1,44 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FAQ Page</title>
+    {% comment %} <link rel="stylesheet" href="{% static 'css/boards.css' %}"> {% endcomment %}
+    <link rel="stylesheet" href="{% static 'css/faq.css' %}">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.0/css/all.min.css">
+</head>
+
+<body>
+
+    <header>
+        <h1><span class="icon-text">📌 Frequently Asked Questions</span></h1>
+    </header>
+
+    <div class="search-container">
+        <input type="text" id="faq-search" placeholder="Search for a question...">
+    </div>
+
+    <div class="faq-container">
+        {% for question, answer in glossary.items %}
+        <div class="faq">
+            <div class="question"><i class="fas fa-question-circle"></i> {{ question }}</div>
+            <div class="answer">{{ answer }}</div>
+        </div>
+        {% endfor %}
+        <div id="no-match-message" style="display: none; text-align: center; padding: 20px; color: #ff6b6b; font-weight: bold;">
+            Nothing matched your results
+        </div>        
+    </div>
+
+    <button id="return-to-home" onclick="window.location.href='{% url 'last-trade-prices' ticker_symbol=ticker_symbol|default:"AAPL" %}';">
+        <i class="fas fa-home" style="color: white;"></i> Return to Home Page
+    </button>
+
+    <script src="{% static 'js/boards.js' %}"></script>
+    <script src="{% static 'js/search.js' %}"></script>
+</body>
+</html>
+

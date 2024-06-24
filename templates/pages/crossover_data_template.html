@@ -1,0 +1,36 @@
+{% extends 'reusable/base.html' %}
+{% block title %}Automated Crossover Analytics - {{ stock_exchange }} {{ company_name }}{% endblock %}
+{% block content %}
+    {% include 'reusable/top_right_links.html' %}
+    {% include 'reusable/ticker_input_form.html' %}
+    <div class="container">
+        <h2>Automated Crossover Analytics - {{ stock_exchange }} {{ company_name }}</h2>
+        <ul class="bullet-points">
+            <li>
+                When the short-term trend (SMA100) is higher than the long-term trend (SMA200), it's referred to
+                as a <b>'Golden Cross,'</b> which <b> suggests a potential upswing in the stock's price. </b>
+            </li>
+            <br/>
+            <li>
+                When the stock's current price is below both the short-term trend (SMA100) and the long-term trend
+                (SMA200), it's referred to as a <b>'Death Cross.'</b> which <b> suggests a potential downswing in the
+                stock's price.</b>
+            </li>
+        </ul>
+        <div id="crossover-plot">
+            {{ crossover_plot | safe }}
+        </div>
+        <ul class="bullet-points">
+            <li>
+                <b> Interpretation: </b>
+                {% if cross_signal == 'A Golden Cross has been detected' %}
+                a <b>"Golden Cross"</b> has been detected, thus suggesting <b> a potential upswing.</b>
+                {% elif cross_signal == 'A Death Cross has been detected' %}
+                a <b>"Death Cross"</b> has been detected, thus suggesting <b> a potential downswing.</b>
+                {% elif cross_signal == 'No significant cross has been detected' %}
+                <b>"no significant cross"</b> has been detected, thus suggesting <b> caution to investors.</b>
+                {% endif %}
+            </li>
+        </ul>
+    </div>
+{% endblock %}

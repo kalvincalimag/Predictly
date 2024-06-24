@@ -1,0 +1,25 @@
+<div class="container">
+    <form method="GET" action="" class="ticker-form">
+        <div class="form-group">
+            <label for="ticker_symbol">Enter Stock Ticker Symbol:</label>
+            <input type="text" id="ticker_symbol" name="ticker_symbol" list="ticker_symbols" value="{{ ticker_symbol }}">
+            <datalist id="ticker_symbols">
+                <option value="AAPL">Apple Inc. (AAPL)</option>
+                <option value="GOOGL">Alphabet Inc. (GOOGL)</option>
+                <option value="MSFT">Microsoft Corporation (MSFT)</option>
+                <option value="AMZN">Amazon.com Inc. (AMZN)</option>
+                <option value="FB">Facebook Inc. (FB)</option>
+                <option value="TSLA">Tesla Inc. (TSLA)</option>
+                <option value="NFLX">Netflix Inc. (NFLX)</option>
+                <option value="NVDA">NVIDIA Corporation (NVDA)</option>
+                <option value="JPM">JPMorgan Chase & Co. (JPM)</option>
+                <option value="V">Visa Inc. (V)</option>
+            </datalist>
+            <span class="tooltip">
+                <span class="tooltiptext">Find</span>
+                <a href="https://finance.yahoo.com/trending-tickers/" target="_blank">more Tickers</a>
+                <span class="tooltiptext"> on Yahoo Finance</span>
+            </span>
+        </div>
+    </form>
+</div>

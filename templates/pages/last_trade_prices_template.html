@@ -1,0 +1,49 @@
+{% extends 'reusable/base.html' %}
+{% block title %}Dashboard - Stock Trend Predictor{% endblock %}
+{% block content %}
+  {% include 'reusable/top_right_links.html' %}
+  <h1>Dashboard - Stock Trend Predictor</h1>
+  {% include 'reusable/ticker_input_form.html' %}
+
+  <div class="container table-container">
+    <h2>Raw Data Summary: {{ stock_exchange }}</h2>
+    <div class="table-wrapper"> 
+      <table>
+        <thead>
+          <tr>
+            <th></th>
+            <th>Opening Price</th>
+            <th>Highest Price</th>
+            <th>Lowest Price</th>
+            <th>Closing Price</th>
+            <th>Trading Volume</th>
+          </tr>
+        </thead>
+        <tbody>
+          {% for row in raw_data_summary.iterrows %}
+          <tr>
+            <td>{{ row.0 }}</td>
+            <td>{{ row.1.Open }}</td>
+            <td>{{ row.1.High }}</td>
+            <td>{{ row.1.Low }}</td>
+            <td>{{ row.1.Close }}</td>
+            <td>{{ row.1.Volume }}</td>
+          </tr>
+          {% endfor %}
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+  <div class="container">
+    <h2>Closing Prices Plot</h2>
+    <div class="closing-prices-plot">
+      {{ closing_prices_plot | safe }}
+    </div>
+    {% if error_message %}
+    <div class="error-message-container">
+      <p class="error-message">{{ error_message }}</p>
+    </div>
+    {% endif %}
+  </div>
+{% endblock %}

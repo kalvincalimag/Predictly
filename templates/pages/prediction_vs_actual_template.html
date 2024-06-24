@@ -1,0 +1,55 @@
+{% extends 'reusable/base.html' %}
+{% block title %}Prediction vs Actual Plot - {{ stock_exchange }} {{ company_name }}{% endblock %}
+{% block content %}
+    {% include 'reusable/top_right_links.html' %}
+    {% include 'reusable/ticker_input_form.html' %}
+    <div class="container">
+        <h2>Prediction vs Actual Plot - {{ stock_exchange }} {{ company_name }}</h2>
+        <ul class="bullet-points">
+            <li>
+                The blue line represents the actual stock prices, while the red line shows the machine learning model's generated predictions.
+            </li>
+            <br>
+            <li>
+                A close alignment between the two lines suggests that the model is performing well in forecasting stock price movements.
+            </li>
+            <br>
+        </ul>
+        {% if prediction_vs_actual_plot %}
+        <div class="plot-container">
+            {{ prediction_vs_actual_plot | safe }}
+        </div>
+        {% else %}
+        <div class="plot-error-message-container">
+            <p class="error-message">No data available for the selected ticker symbol. Please try a different symbol.</p>
+        </div>
+        {% endif %}
+    </div>
+    <div class="container">
+        <h2>Weekly Outlook Plot</h2>
+        {% if weekly_forecast_plot %}
+        <div class="plot-container">
+            {{ weekly_forecast_plot | safe }}
+        </div>
+        <ul class="bullet-points">
+            <li>
+                The Weekly Forecast plot provides a forecasted overview of expected stock price movements for the upcoming week based on historical data and predictive analytics.
+            </li>
+            <br>
+            <li>
+                The visual plot above indicates a <b> "{{ future_trend }}" </b> signal, thus suggesting a 
+                {% if future_trend == 'Bearish Trend' %}
+                <b >potential downswing. </b>
+                {% elif future_trend == 'Bullish Trend' %}
+                <b> potential upswing. </b>
+                {% endif %}
+            </li>
+        </ul>
+        {% else %}
+        <div class="plot-error-message-container">
+            <p class="error-message">No data available for the selected ticker symbol. Please try a different symbol.</p>
+        </div>
+        {% endif %}
+    </div>
+
+{% endblock %}

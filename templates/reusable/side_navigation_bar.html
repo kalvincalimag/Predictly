@@ -1,0 +1,49 @@
+<nav class="sidebar">
+
+  <div class="close-sidebar" onclick="closeSidebar()">
+    <i class="fas fa-times"></i>
+  </div>
+
+  <div class="sidebar-head">
+    <div class="sidebar-head-topline"></div>
+    <div class="logo-container">
+      <a href="{% url 'last-trade-prices' ticker_symbol=ticker_symbol|default:"AAPL" %}">
+        <img type="image/png" src="https://i.imgur.com/4RzR28s.png" alt="My image">
+        <span>Predictly</span>
+      </a>
+    </div>
+    <div class="sidebar-head-bottomline"></div>
+  </div>
+
+  <div class="menu-content">
+    <ul class="menu-items">
+      <li class="item">
+        <a href="{% url 'last-trade-prices' ticker_symbol=ticker_symbol|default:"AAPL" %}">Last Trade Prices</a>
+      </li>
+      <li class="item">
+        <a href="{% url 'automated-crossover' ticker_symbol=ticker_symbol|default:"AAPL" %}">Automated Crossover</a>
+      </li> 
+      <li class="item">
+        <a href="{% url 'prediction-vs-actual' ticker_symbol=ticker_symbol|default:"AAPL" %}">Prediction vs Actual</a>
+      </li>
+      <li class="item">
+        <a href="{% url 'market-glossary' %}"> Market Glossary</a>
+      </li> 
+    </ul>
+  </div>
+  
+  <div class="bottom-buttons">
+    <ul class="button-items">
+      {% comment %} <li class="bottom-button">
+        {% if user.is_authenticated %}
+        <a href="/my_watchlist"> My Watchlist</a>
+        {% endif %}
+      </li>  {% endcomment %}
+      <li class="bottom-button">
+        {% if user.is_authenticated %}
+        <a href="/signout">Sign Out {{ fname }}</a>
+        {% endif %}
+      </li> 
+    </ul>
+  </div>
+</nav>

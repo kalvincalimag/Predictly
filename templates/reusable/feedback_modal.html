@@ -1,0 +1,21 @@
+<div class="modal" id="feedbackModal">
+  <div class="modal-content">
+    <div class="modal-header">
+      <h2 class="modal-title">📢 Feedback</h2>
+      <span onclick="closeFeedbackModal()" class="close">&times;</span>
+    </div>
+    <div class="modal-body">
+      <p>🚀 We would love to hear from you!</p>
+      <form id="feedbackForm">
+        {% csrf_token %}
+        <div class="form-group">
+          <input type="email" id="emailInput" name="email" placeholder="✉️ Enter your email" required>
+        </div>
+        <div class="form-group">
+          <textarea id="feedbackInput" name="feedback" placeholder="💡 Enter your feedback" required></textarea>
+        </div>
+        <button type="button" onclick="sendFeedback()">Submit</button>
+      </form>
+    </div>
+  </div>
+</div>

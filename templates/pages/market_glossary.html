@@ -1,0 +1,35 @@
+{% extends 'reusable/base.html' %}
+{% block title %}Market Glossary{% endblock %}
+{% block extra_styles %}
+<style>
+  input[type="text"] {
+    width: 100%;
+    padding: 8px 10px;
+    border: 1px solid #ccc;
+    font-size: 16px;
+    background-color: #F0F2F6;
+    border-radius: 5px;
+  }
+</style>
+{% endblock %}
+{% block content %}
+  {% include 'reusable/top_right_links.html' %}
+  <h1>📚 Market Glossary</h1>
+  <div class="container">
+    <input type="text" id="glossary-search" placeholder="Search for a jargon..." oninput="filterGlossary()">
+  </div>
+  <div class="container">
+    <ul class="glossary-list">
+      {% for term, meaning in glossary.items %}
+      <li>
+        <h3>{{ term }}</h3>
+        <p>{{ meaning }}</p>
+      </li>
+      {% endfor %}
+      <div id="no-glossary-match-message" style="display: none; text-align: center; padding: 20px; color: #ff6b6b; font-weight: bold;">
+        Nothing matched your results
+      </div>          
+    </ul>
+  </div>
+{% endblock %}
+
