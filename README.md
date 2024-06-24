@@ -52,7 +52,6 @@ Follow these simple steps to set up Predictly on your local machine:
 
 6. Migrate Database and createsuperuser
    ```
-   cd PWA
    python manage.py migrate
    python manage.py createsuperuser
    ```
@@ -60,7 +59,6 @@ Follow these simple steps to set up Predictly on your local machine:
 
 7. Run the Django server:
    ```
-   cd PWA
    python manage.py runserver
    ```
 
