@@ -39,11 +39,8 @@ Follow these simple steps to set up Predictly on your local machine:
 
 5. Create .env file at the root folder:
    ```
-   echo "EMAIL_USE_TLS=True
-   EMAIL_HOST='smtp.gmail.com'
-   EMAIL_HOST_USER='<Your_Gmail_Address>'
+   echo "EMAIL_HOST_USER='<Your_Gmail_Address>'
    EMAIL_HOST_PASSWORD='<Your_Gmail_App_Password>'
-   EMAIL_PORT=587
 
    DJ_SECRET_KEY='<Your_Django_Secret_Key>'" > .env
    ```

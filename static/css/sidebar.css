@@ -1,5 +1,4 @@
 /* Sidebar & Children */
-
 :root {
   --sidebar-width: 300px;
   --brandTheme: #ff4b4b;
@@ -10,67 +9,46 @@
 }
 
 .sidebar {
+  display: none;
+  width: 0;
+  overflow: hidden;
+}
+
+.sidebar.active{
   position: fixed;
-  display: flex;
   flex-direction: column;
   height: 100vh;
   background: #f0f2f6;
   padding: 1.2rem;
   transition: left 0.3s;
+  display: block;
   width: var(--sidebar-width);
-  z-index: 999;
-}
-
-@media screen and (max-width: 768px) {
-  .sidebar {
-    display: none;
-    width: 0;
-    overflow: hidden;
-  }
-  
-  .sidebar.active{
-    display: block;
-    width: var(--sidebar-width);
-    z-index: 999;
-  }
+  z-index: 99;
 }
 
 .menu-toggle {
   display: none;
 }
 
-@media screen and (max-width: 768px) {
-  .menu-toggle {
-    display: block; 
-    position: absolute;
-    cursor: pointer;
-    top: 1.25rem;
-    left: 2.5rem;
-  }
+.menu-toggle i {
+  font-size: 1.4rem;
+  color: #333;
+}
 
-  .menu-toggle i {
-    font-size: 1.4rem;
-    color: #333;
-  }
+.menu-toggle.active {
+  display: block; 
+  position: absolute;
+  cursor: pointer;
+  top: 1.25rem;
+  left: 2.5rem;
 }
 
 .close-sidebar {
-  display: none;
-}
-
-@media screen and (max-width: 768px) {
-  .close-sidebar {
-    display: block; 
-    position: absolute;
-    top: 2.5rem; 
-    right: 2.5rem; 
-    cursor: pointer;
-  }
-  
-  .close-sidebar i {
-    font-size: 1.4rem;
-    color: #333;
-  }
+  display: block;
+  position: absolute;
+  top: 1.2rem; 
+  right: 2rem; 
+  cursor: pointer;
 }
 
 .sidebar-head {
@@ -137,19 +115,13 @@
   letter-spacing: 3px;
 }
 
-@media (max-width: 768px) {
-  .logo-container span {
-    font-size: var(--text-md); 
-  }
-}
-
-/* redundant */
 .sidebar-head .logo-container a {
   display: flex;
   align-items: center;
   justify-content: center;
   text-decoration: none;
   gap: .5rem;
+  font-size: var(--text-md);
 }
   
 /* Sidebar & Children - Items */
@@ -194,10 +166,12 @@
 }
 
 /* Sidebar & Children - Bottom Buttons */
-
 .bottom-buttons{
-  margin-top: auto;
-  padding: 2rem .5rem;
+  position: absolute;
+  bottom: 2.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
 }
 
 .button-items{
@@ -220,7 +194,6 @@
   border-radius: .5rem; 
   text-decoration: none;
   cursor: pointer;
-  font-weight: 400;
   transition: background-color 0.3s, color 0.3s; 
 }
 
@@ -228,14 +201,4 @@
   background-color: #f02e2e; 
   color: #fff;
   box-shadow: var(--box-shadow); 
-}
-
-@media (max-width: 768px) {
-  .bottom-buttons {
-    position: absolute;
-    bottom: 2.5rem;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 100%;
-  }
 }

@@ -15,17 +15,15 @@
     />
   </head>
   <body>
-    <div class="menu-toggle">
-      <i class="fas fa-bars"></i>
-    </div>
     {% include 'reusable/side_navigation_bar.html' %}
     <main class="main">
-      <div class="main-content-container">
+      <div class="main-content">
         {% block content %} {% endblock %}
       </div>
     </main>
     {% include 'reusable/feedback_modal.html' %}
     <script src="{% static 'js/boards.js' %}"></script>
     <script src="{% static 'js/search.js' %}"></script>
+    <script src="{% static 'js/sidebarToggle.js' %}"></script>
   </body>
 </html>

@@ -2,9 +2,18 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap");
 
 :root {
-  --sidebar-width: 300px;
   --brandTheme: #FF4B4B;
   --box-shadow: 0 2px 4px rgba(0, 0, 0, 0.15);
+
+  --sidebar-width: 300px;
+
+  --large-heading: 34px;
+  --medium-heading: 24px;
+  --small-text: 14px;
+
+  --mdscreen-large-heading: 18px;
+  --mdscreen-medium-heading: 16px;
+  --mdscreen-small-text: 11px;
 }
 
 * {
@@ -25,15 +34,13 @@
 }
 
 .main {
-  width: calc(100% - var(--sidebar-width));
   margin-left: var(--sidebar-width);
   min-height: 100vh;
-  padding: 20px;
-  font-size: 14px;
+  padding: 1.5rem;
   transition: width 0.3s, margin-left 0.3s ease;
 }
 
-.main-content-container {
+.main-content {
   overflow-y: auto;
   display: flex; 
   flex-direction: column; 
@@ -45,32 +52,25 @@
 }
 
 .container {
-  margin-top: 20px;
+  margin-top: 1.5rem;
   width: 100%;
   max-width: 940px; 
   text-align: left;
-  padding: 10px 20px; 
+  padding: 1rem 1.5rem; 
   background-color: #fafbfc; 
-  border-radius: 10px; 
+  border-radius: 1rem; 
   box-shadow: var(--box-shadow); 
 }
 
-.closing-prices-image, .automated-crossover-image {
-  background-color: #333;
-  max-width: 100%; 
-  height: auto;  
-}
-
-.main h1 {
+h1 {
   font-size: 34px;
   color: #31333f; 
   padding: 0;
 }
 
-
 .container h2 {
   margin-bottom: 10px;
-  font-size: 24px;
+  font-size: var(--medium-heading);
 }
 
 .container form {
@@ -83,6 +83,7 @@
 
 .container table {
   margin-top: 10px; 
+  font-size: var(--small-text);
 }
 
 .container .ticker-form {
@@ -106,7 +107,7 @@ input[type="text"] {
   width: 100%;
   padding: 8px 10px;
   border: 1px solid #ccc;
-  font-size: 16px;
+  font-size: var(--small-text);
   background-color: #F0F2F6;
   border-radius: 5px;
 }
@@ -122,12 +123,11 @@ button[type="submit"] {
   color: #fff;
   border: none;
   border-radius: 5px;
-  font-size: 16px;
+  font-size: var(--small-text);
   cursor: pointer;
   display: none;
 }
   
-
 button[type="submit"]:hover {
   background-color: var(--brandTheme);
 }
@@ -149,7 +149,7 @@ label {
 }
 
 .container table {
-    width: 100%;
+  width: 100%;
 }
 
 table {
@@ -179,7 +179,7 @@ th {
   margin-top: 20px;
   margin-bottom: 20px;
   padding-left: 20px; 
-  font-size: 14px;
+  font-size: var(--small-text);
   color: #555; 
 }
 
@@ -198,24 +198,23 @@ th {
 }
 
 .glossary-list h3 {
-  font-size: 20px;
   color: #333;
   margin: 0 0 10px;
 }
 
 .glossary-list p {
-  font-size: 16px;
+  font-size: var(--small-text);
   color: #666;
   margin: 0;
 }
 
 @media (max-width: 768px) {
   * {
-    font-size: 11px; 
+    font-size: var(--mdscreen-small-text); 
   }
 
   .container h2 {
-    font-size: 16px; 
+    font-size: var(--mdscreen-medium-heading); 
   }
 
   .table-container {
@@ -229,19 +228,11 @@ th {
 
   .main h1 {
     padding-top: 12px;
-    font-size: 18px;
+    font-size: var(--mdscreen-large-heading);
   }
 }
-  
-@media (max-width: 480px) {
-  * {
-    font-size: 8px; 
-  }
 
-  .container h2 {
-    font-size: 14px; 
-  }
-}
+/* Error Messages */
 
 .error-message-container {
   position: relative;
@@ -271,7 +262,7 @@ th {
 
 .error-message {
   margin: 0;
-  font-size: 14px;
+  font-size: var(--small-text);
   font-weight: 500;
   color: #fff;
 }
@@ -295,6 +286,7 @@ th {
   transition: background-color 0.3s;
   display: flex; 
   align-items: center; 
+  font-size: var(--small-text);
 }
 
 .top-right-links a i {
@@ -304,4 +296,3 @@ th {
 .top-right-links a:hover {
   background-color: #ddd;
 }
-

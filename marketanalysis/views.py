@@ -17,8 +17,9 @@ from . tokens import generate_token
 from rest_framework.views import APIView
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import load_model
-from .models import Stock
-from .forms import StockForm, PasswordResetForm, FeedbackForm
+# from .models import Stock
+# from .forms import StockForm
+from .forms import PasswordResetForm, FeedbackForm
 from rest_framework.response import Response
 from datetime import datetime, timedelta
 
@@ -245,7 +246,6 @@ def signup(request):
         
         # User Email Confirmation End
         
-        
         return redirect('signin') 
         
     return render(request, "authentication/signup.html")
@@ -370,53 +370,53 @@ def feedback_view(request):
 
     return render(request, 'feedback_template.html', {'form': form})
 
-@login_required  
-def my_watchlist(request):
-    import requests
-    import json
+# @login_required  
+# def my_watchlist(request):
+#     import requests
+#     import json
 
-    if request.method == 'POST':
-        form = StockForm(request.POST)
-        if form.is_valid():
-            stock = form.save(commit=False)
-            stock.user = request.user 
-            stock.save()
-            messages.success(request, "Stock has been added!")
-            return redirect('my_watchlist')
-    else:
-        ticker = Stock.objects.filter(user=request.user)  
-        output = []
+#     if request.method == 'POST':
+#         form = StockForm(request.POST)
+#         if form.is_valid():
+#             stock = form.save(commit=False)
+#             stock.user = request.user 
+#             stock.save()
+#             messages.success(request, "Stock has been added!")
+#             return redirect('my_watchlist')
+#     else:
+#         ticker = Stock.objects.filter(user=request.user)  
+#         output = []
 
-        for ticker_item in ticker:
-            api_request = requests.get(
-                "https://cloud.iexapis.com/stable/stock/" + str(ticker_item) + "/quote?token=" + IEX_API_TOKEN)
-            try:
-                api = json.loads(api_request.content) 
-                api['pk'] = ticker_item.pk
-                output.append(api)
-            except Exception as e:
-                api = "Error..."
+#         for ticker_item in ticker:
+#             api_request = requests.get(
+#                 "https://cloud.iexapis.com/stable/stock/" + str(ticker_item) + "/quote?token=" + IEX_API_TOKEN)
+#             try:
+#                 api = json.loads(api_request.content) 
+#                 api['pk'] = ticker_item.pk
+#                 output.append(api)
+#             except Exception as e:
+#                 api = "Error..."
              
-        if request.user.is_authenticated:
-                fname = request.user.first_name
-        else:
-            fname = ""
+#         if request.user.is_authenticated:
+#                 fname = request.user.first_name
+#         else:
+#             fname = ""
         
-        return render(request, 'pages/my_watchlist.html', {'ticker': ticker, 'output': output, 'fname':fname})
+#         return render(request, 'pages/my_watchlist.html', {'ticker': ticker, 'output': output, 'fname':fname})
 
-@login_required
-def delete(request, stock_id):
-    try:
-        stock = Stock.objects.get(pk=stock_id)
-        if stock.user == request.user: 
-            stock.delete()
-            messages.success(request, "Stock has been deleted!")
-        else:
-            messages.error(request, "You can only delete your own stocks!")
-    except Stock.DoesNotExist:
-        messages.error(request, "Stock not found!")
+# @login_required
+# def delete(request, stock_id):
+#     try:
+#         stock = Stock.objects.get(pk=stock_id)
+#         if stock.user == request.user: 
+#             stock.delete()
+#             messages.success(request, "Stock has been deleted!")
+#         else:
+#             messages.error(request, "You can only delete your own stocks!")
+#     except Stock.DoesNotExist:
+#         messages.error(request, "Stock not found!")
     
-    return redirect('my_watchlist')
+#     return redirect('my_watchlist')
 
 closing_prices_plot_lock = threading.Lock()
 crossover_plot_lock = threading.Lock()

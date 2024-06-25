@@ -1,27 +1,3 @@
-function closeSidebar() {
-    const sidebar = document.querySelector(".sidebar");
-    const main = document.querySelector(".main");
-    sidebar.classList.remove("active");
-    main.style.marginLeft = "0";
-  }
-
-document.addEventListener("DOMContentLoaded", function () {
-const sidebar = document.querySelector(".sidebar");
-const main = document.querySelector(".main");
-const hamburger = document.querySelector(".menu-toggle");
-
-hamburger.addEventListener("click", function () {
-    sidebar.classList.toggle("active");
-    if (sidebar.classList.contains("active")) {
-    main.style.marginLeft = "300px";
-    sidebar.style.width = "300px";
-    sidebar.style.zIndex = "9999";
-    } else {
-    main.style.marginLeft = "0";
-    }
-});
-});
-
 // FAQ Reveal Answer on Click
 document.addEventListener("DOMContentLoaded", function() {
   const questions = document.querySelectorAll(".question");
