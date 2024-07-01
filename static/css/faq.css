@@ -8,6 +8,10 @@
     color: #31333f; 
   }
 
+  .main{
+    padding: 1.5rem;
+  }
+
 header {
     background-color: #ff6b6b;
     color: #fff; 
@@ -21,6 +25,13 @@ h1 {
     font-weight: 600;
 }
 
+@media (max-width: 768px){
+  h1 {
+    font-size: 16px;
+    font-weight: 600;
+  }
+} 
+
 .icon-text {
     margin-left: 4px; 
 }
@@ -32,6 +43,12 @@ input[type="text"] {
     font-size: 16px;
     background-color: #F0F2F6;
     border-radius: 5px;
+}
+
+@media (max-width: 768px){
+  input[type="text"] {
+    font-size: 10px;
+  }
 }
 
 footer {
@@ -115,6 +132,13 @@ footer p {
     display: none;
     transition: display 0.3s ease;
     line-height: 1.5;
+  }
+
+  @media (max-width: 768px){
+    .question, 
+    .answer{
+      font-size: 10px;
+    }
   }
   
   .faq.active {

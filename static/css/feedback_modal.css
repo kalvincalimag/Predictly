@@ -9,6 +9,7 @@
     justify-content: center;
     align-items: center;
     z-index: 1000;
+    padding: 1rem;
 }
   
   .modal-content {
@@ -25,13 +26,21 @@
   
   .modal-header {
     display: flex;
-    justify-content: space-between;
+    /* justify-content: space-between; */
+    position: relative;
+    justify-content: center;
     align-items: center;
     margin-bottom: 20px;
   }
   
   .modal-title {
     font-size: 28px;
+  }
+
+  @media (max-width: 768px){
+    .modal-title {
+      font-size: 20px;
+    }
   }
   
   .modal-body {
@@ -41,6 +50,12 @@
   .modal-body p {
     font-size: 18px;
     margin-bottom: 20px;
+  }
+
+  @media (max-width: 768px){
+    .modal-body p {
+      font-size: 12px;
+    }
   }
   
   .form-group {
@@ -58,10 +73,18 @@
     box-sizing: border-box;
     resize: none;
   }
+
+  @media (max-width: 768px){
+    .modal-content input,
+    .modal-content textarea {
+      font-size: 12px;
+    }
+  }
   
   button {
+    margin-top: 1.5rem;
     cursor: pointer;
-    padding: 12px 20px;
+    padding: 8px 18px;
     font-size: 16px;
     background-color: #ff6600; 
     color: #ffffff;
@@ -72,8 +95,17 @@
   button:hover {
     background-color: #ff3300; 
   }
+
+  @media (max-width: 768px){
+    button {
+      font-size: 10px;
+    }
+  }
   
   .close {
+    position: absolute;
+    top: 0px;
+    right: 4px;
     font-size: 30px;
     cursor: pointer;
     color: #333333;

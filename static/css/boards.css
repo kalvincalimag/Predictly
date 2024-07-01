@@ -115,6 +115,12 @@ input[type="text"] {
 input[type="text"]:focus {
   border-color: var(--brandTheme);
 }
+
+@media (max-width: 768px) {
+  input[type="text"] {
+    font-size: var(--mdscreen-small-text);
+  }
+}
   
 button[type="submit"] {
   margin-top: 1.9rem;
@@ -289,10 +295,16 @@ th {
   font-size: var(--small-text);
 }
 
-.top-right-links a i {
+.top-right-links i {
   margin-right: 5px; 
 }
 
 .top-right-links a:hover {
   background-color: #ddd;
+}
+
+@media (max-width:768px) {
+  .top-right-links i,
+  .top-right-links a {
+    font-size: var(--mdscreen-small-text);
 }
