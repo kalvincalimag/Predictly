@@ -1,89 +1,43 @@
 # Predictly: Stock Analysis & Prediction Web Application
 
-Predictly is a powerful web application designed for in-depth stock price analysis and prediction, leveraging cutting-edge machine learning techniques. Here's a glimpse of its key features:
+Predictly is a multifunctional stock market toolkit built on Python & Django. Offers historical charts, trend forecasting, portfolio management, market term definitions, & crossover analysis. Utilizes Plotly for charting, Alphavantage/yfinance for data retrieval, and Keras for forecasts.
 
-- **Last Trade Prices**: Displays the last trade prices for a given stock.
-- **Automated Crossover**: Detects and displays golden/death crosses in stock prices.
-- **Prediction vs. Actual**: Compares predicted stock prices with actual prices.
-- **Weekly Forecast**: Provides a weekly forecast of stock prices.
+## Demo
 
-## Installation Guide
+#### Dashboard
 
-Follow these simple steps to set up Predictly on your local machine:
+![Dashboard](https://res.cloudinary.com/dotera808/image/upload/v1724574337/Predictly/Dashboard_aguwyu.gif)
 
-1. Clone the repository:
+#### Crossover
 
-   ```powershell
-   git clone https://github.com/yourusername/Predictly.git
-   ```
+![Analysis](https://res.cloudinary.com/dotera808/image/upload/v1724574337/Predictly/Analytics_rwapf6.gif)
 
-2. Navigate to the Project Directory:
+#### Predictions
 
-   ```
-   cd Predictly
-   ```
+![Prediction](https://res.cloudinary.com/dotera808/image/upload/v1724574336/Predictly/Prediction_bixl9h.gif)
 
-3. Create and activate a Python virtual environment (optional but recommended):
+#### Watchlist
 
-   ```
-   python -m venv venv
-   venv\Scripts\activate
-   ```
-   - Use '. venv/bin/activate' if not installing on Windows.
+![Watchlist](https://res.cloudinary.com/dotera808/image/upload/v1724574335/Predictly/Watchlist_wxqqrj.gif)
 
-4. Install the required dependencies:
+#### Glossary
 
-   ```
-   pip install -r requirements.txt
-   ```
+![Glossary](https://res.cloudinary.com/dotera808/image/upload/v1724574335/Predictly/Glossary_ogcbx5.gif)
 
-5. Create .env file at the root folder:
-   ```
-   echo "EMAIL_HOST_USER='<Your_Gmail_Address>'
-   EMAIL_HOST_PASSWORD='<Your_Gmail_App_Password>'
+## Contact
 
-   DJ_SECRET_KEY='<Your_Django_Secret_Key>'" > .env
-   ```
-   - Note: For Gmail users, create an app password for the EMAIL_HOST_PASSWORD field.
-     - Go to Gmail > Profile Icon > Manage your Google Account Security > 2-Step Verification > Create App (email sender) > App Password.
+### Let's connect
 
-6. Migrate Database and createsuperuser
-   ```
-   python manage.py migrate
-   python manage.py createsuperuser
-   ```
-   - Note: You will be prompted to enter your admin credentials. Follow the instructions to set up your superuser account.
+- Twitter [@kalvincalimag\_](https://twitter.com/kalvincalimag_)
 
-7. Run the Django server:
-   ```
-   python manage.py runserver
-   ```
+### If you find this project helpful, please consider giving it a ⭐.
 
-8. Access the web app in your browser at http://localhost:8000/.
+[⭐](https://github.com/kalvincalimag/django-stock-market-app/stargazers) this repo or follow me on:
 
-## Visual Overview
+- Github [@kalvincalimag](https://github.com/kalvincalimag)
 
-- **Last Trade Prices**:
-  ![Last Trade Prices](screenshots/Last_Trade_Prices.png)
-
-- **Automated Crossover Analytics**:
-  ![Automated Crossover](screenshots/Automated_Crossover.png)
-
-- **Prediction vs Actual & Weekly Forecast**:
-  ![Prediction Page](screenshots/Prediction_Page.png)
-
-- **Beginner's Market Glossary**:
-  ![Market Glossary](screenshots/Market_Glossary.png)
-
-## Technology Stack
-
-Predictly leverages the following technologies to deliver a seamless user experience:
-
-- **Python Django**: A high-level Python web framework that encourages rapid development and clean, pragmatic design.
-- **Plotly for interactive plots**: Plotly's interactive plots add a new dimension to data visualization, making it more engaging and insightful.
-- **yfinance for stock price data**: Access up-to-date stock price data using the Yahoo Finance API, ensuring accurate analysis.
-- **Tensorflow and Keras**: Utilizes TensorFlow and Keras for machine learning tasks, enabling advanced stock price prediction capabilities.
+- Medium [@kalvincalimag](https://medium.com/@kalvincalimag)
 
 ## License
 
-This project is licensed under the GNU General Public License - see the LICENSE file for details.
+[BSD](LICENSE.md) @kalvincalimag

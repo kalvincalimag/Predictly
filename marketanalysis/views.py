@@ -17,8 +17,8 @@ from . tokens import generate_token
 from rest_framework.views import APIView
 from sklearn.preprocessing import MinMaxScaler
 from tensorflow.keras.models import load_model
-# from .models import Stock
-# from .forms import StockForm
+from .forms import StockForm
+from .models import Stock
 from .forms import PasswordResetForm, FeedbackForm
 from rest_framework.response import Response
 from datetime import datetime, timedelta
@@ -31,8 +31,8 @@ import os
 import numpy as np
 import plotly.express as px
 import plotly.graph_objects as go
-
-IEX_API_TOKEN = os.getenv('IEX_API_TOKEN')
+import requests
+import json
 
 def home(request):
     return render(request, "authentication/signup.html")
@@ -154,7 +154,6 @@ def signup(request):
         myuser = User.objects.create_user(username, email, pass1)
         myuser.first_name = fname
         myuser.last_name = lname
-        # myuser.is_active = False
         myuser.is_active = False  
         myuser.save()
         messages.success(request, "Your Account has been created succesfully! Please check your email to confirm your email address in order to activate your account.")
@@ -370,53 +369,62 @@ def feedback_view(request):
 
     return render(request, 'feedback_template.html', {'form': form})
 
-# @login_required  
-# def my_watchlist(request):
-#     import requests
-#     import json
+ALPHA_VANTAGE_API_KEY = os.getenv('ALPHA_VANTAGE_API_KEY')
 
-#     if request.method == 'POST':
-#         form = StockForm(request.POST)
-#         if form.is_valid():
-#             stock = form.save(commit=False)
-#             stock.user = request.user 
-#             stock.save()
-#             messages.success(request, "Stock has been added!")
-#             return redirect('my_watchlist')
-#     else:
-#         ticker = Stock.objects.filter(user=request.user)  
-#         output = []
+@login_required  
+def my_watchlist(request):
+    if request.method == 'POST':
+        form = StockForm(request.POST)
+        if form.is_valid():
+            stock = form.save(commit=False)
+            stock.user = request.user 
+            stock.save()
+            messages.success(request, "Stock has been added!")
+            return redirect('my_watchlist')
+    else:
+        form = StockForm()  
+        ticker = Stock.objects.filter(user=request.user)  
+        output = []
 
-#         for ticker_item in ticker:
-#             api_request = requests.get(
-#                 "https://cloud.iexapis.com/stable/stock/" + str(ticker_item) + "/quote?token=" + IEX_API_TOKEN)
-#             try:
-#                 api = json.loads(api_request.content) 
-#                 api['pk'] = ticker_item.pk
-#                 output.append(api)
-#             except Exception as e:
-#                 api = "Error..."
+        for ticker_item in ticker:
+            api_request = requests.get(
+                f"https://www.alphavantage.co/query?function=GLOBAL_QUOTE&symbol={ticker_item}&apikey={ALPHA_VANTAGE_API_KEY}")
+            try:
+                api = json.loads(api_request.content)
+                if 'Global Quote' in api:
+                    stock_data = api['Global Quote']
+                    stock_data['pk'] = ticker_item.pk
+                    stock_data['added_at'] = ticker_item.added_at
+                    output.append(stock_data)
+                else:
+                    output.append({'symbol': str(ticker_item), 'error': 'Data not found: API limit reached.'})
+            except Exception as e:
+                output.append({'symbol': str(ticker_item), 'error': str(e)})
              
-#         if request.user.is_authenticated:
-#                 fname = request.user.first_name
-#         else:
-#             fname = ""
-        
-#         return render(request, 'pages/my_watchlist.html', {'ticker': ticker, 'output': output, 'fname':fname})
+        print(output)
 
-# @login_required
-# def delete(request, stock_id):
-#     try:
-#         stock = Stock.objects.get(pk=stock_id)
-#         if stock.user == request.user: 
-#             stock.delete()
-#             messages.success(request, "Stock has been deleted!")
-#         else:
-#             messages.error(request, "You can only delete your own stocks!")
-#     except Stock.DoesNotExist:
-#         messages.error(request, "Stock not found!")
+        if request.user.is_authenticated:
+            fname = request.user.first_name.capitalize()
+        else:
+            fname = ""
+        
+        return render(request, 'pages/my_watchlist.html', {'form': form, 'ticker': ticker, 'output': output, 'fname': fname,})
+
+@login_required
+def delete(request, stock_id):
+    try:
+        stock = Stock.objects.get(pk=stock_id)
+        if stock.user == request.user: 
+            stock.delete()
+            messages.success(request, "Stock has been deleted!")
+        else:
+            messages.error(request, "You can only delete your own stocks!")
+    except Stock.DoesNotExist:
+        messages.error(request, "Stock not found!")
     
-#     return redirect('my_watchlist')
+    return redirect('my_watchlist')
+
+
 
 closing_prices_plot_lock = threading.Lock()
 crossover_plot_lock = threading.Lock()

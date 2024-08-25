@@ -19,8 +19,8 @@ urlpatterns = [
     path('faq/', views.faq, name='faq'),
     path('feedback/', feedback_view, name='feedback_view'),
 
-    # path('my_watchlist', views.my_watchlist, name="my_watchlist"),
-    # path('delete/<stock_id>', views.delete, name="delete"),
+    path('my_watchlist/', views.my_watchlist, name='my_watchlist'),
+    path('delete/<int:stock_id>/', views.delete, name='delete_stock'),
     path('market-glossary/', views.market_glossary, name='market-glossary'),
     
     path('last-trade-prices/<str:ticker_symbol>/', views.LastTradePricesAPIView.as_view(), name='last-trade-prices'),

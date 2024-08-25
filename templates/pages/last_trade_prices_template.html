@@ -5,8 +5,20 @@
   <h1>Dashboard - Stock Trend Predictor</h1>
   {% include 'reusable/ticker_input_form.html' %}
 
+  <div class="container">
+    <h2>Historical Performance</h2>
+    <div class="closing-prices-plot">
+      {{ closing_prices_plot | safe }}
+    </div>
+    {% if error_message %}
+    <div class="error-message-container">
+      <p class="error-message">{{ error_message }}</p>
+    </div>
+    {% endif %}
+  </div>
+
   <div class="container table-container">
-    <h2>Raw Data Summary: {{ stock_exchange }}</h2>
+    <h2>({{ stock_exchange }}) Data Summary</h2>
     <div class="table-wrapper"> 
       <table>
         <thead>
@@ -33,17 +45,5 @@
         </tbody>
       </table>
     </div>
-  </div>
-
-  <div class="container">
-    <h2>Closing Prices Plot</h2>
-    <div class="closing-prices-plot">
-      {{ closing_prices_plot | safe }}
-    </div>
-    {% if error_message %}
-    <div class="error-message-container">
-      <p class="error-message">{{ error_message }}</p>
-    </div>
-    {% endif %}
   </div>
 {% endblock %}
