@@ -24,6 +24,10 @@ Predictly is a multifunctional stock market toolkit built on Python & Django. Of
 
 ![Glossary](https://res.cloudinary.com/dotera808/image/upload/v1724574335/Predictly/Glossary_ogcbx5.gif)
 
+#### Mobile V1 (Discontinued)
+
+![PredictlyMobile](https://res.cloudinary.com/dotera808/image/upload/v1724683989/Predictly/PredictlyMobilev1_jdbh8w.gif)
+
 ## Contact
 
 ### Let's connect
